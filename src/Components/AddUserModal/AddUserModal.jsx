@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { UserList, UserInfoSend } from '../LoginContext'
 import './AddUser.css'
 import Swal from 'sweetalert2'
 
 function AddUserModal({ closeAdduserMOdal, setavailUser, userListArray }) {
-  const { listAllUserAdded, setListAllUserAdded } = useContext(UserList)
+  const { listAllUserAdded } = useContext(UserList)
   const { containUserInfo, setContainUserInfo } = useContext(UserInfoSend)
 
   const [getUserID, setGetUserID] = useState()
@@ -24,7 +24,7 @@ function AddUserModal({ closeAdduserMOdal, setavailUser, userListArray }) {
     if (!list.some(checkList)) {
       setContainUserInfo({ ...containUserInfo, userId: getUserID })
       for (let i = 0; i < userListArray.data.length; i++) {
-        if (userListArray.data[i].id == getUserID) {
+        if (userListArray.data[i].id === getUserID) {
           setavailUser(userListArray.data[i].uid)
         }
       }
